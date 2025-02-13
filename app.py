@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, render_template
 from flask_cors import CORS
 import sqlite3
 import hashlib
@@ -6,7 +6,9 @@ import os
 
 app = Flask(__name__)
 CORS(app)
-
+@app.route('/')
+def home():
+    return render_template('index.html')
 # Configuration
 UPLOAD_FOLDER = 'static/images'
 if not os.path.exists(UPLOAD_FOLDER):
